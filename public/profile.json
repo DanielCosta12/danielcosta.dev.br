@@ -7,8 +7,106 @@
     { "url": "mailto:danieldossantosdacosta@gmail.com", "text": "Gmail" },
     { "url": "https://wa.me/5521968318309", "text": "WhatsApp" }
   ],
-  "skills": [
-    "Análise e Desenvolvimento de Sistemas", "SQL", "BI", "JavaScript","Vue","Arch Linux", "Proxmox", "Docker", "pfSense", "IA", "Bitcoin", "n8n", "dns"
-  ],
-  "biography": "Sou apaixonado pela área de Tecnologia, com formação em Análise e Desenvolvimento de Sistemas e experiência prática em SQL, Business Intelligence, Power BI e análise de indicadores. Atuo na transformação de dados em insights para otimização de processos, apoiando decisões estratégicas com base em KPIs e métricas de desempenho. Possuo conhecimentos em Python, JavaScript, Vue, Linux (Arch Linux), virtualização e infraestrutura com Proxmox, Docker e pfSense, além de automações inteligentes com n8n e integração de APIs. Tenho forte interesse em Inteligência Artificial, bitcoin, infraestrutura, automação e inovação tecnológica, sempre conectando tecnologia, dados e uma visão analítica sobre o impacto da tecnologia nos negócios e na sociedade."
+  "pt": {
+    "skills": [
+      "Análise e Desenvolvimento de Sistemas", "SQL", "BI", "JavaScript","Vue","Arch Linux", "Proxmox", "Docker", "pfSense", "IA", "Bitcoin", "N8N", "DNS"
+    ],
+    "biography": "Sou apaixonado pela área de Tecnologia, com formação em Análise e Desenvolvimento de Sistemas e experiência prática em SQL, Business Intelligence, Power BI e análise de indicadores. Atuo na transformação de dados em insights para otimização de processos, apoiando decisões estratégicas com base em KPIs e métricas de desempenho. Possuo conhecimentos em Python, JavaScript, Vue, Linux (Arch Linux), virtualização e infraestrutura com Proxmox, Docker e pfSense, além de automações inteligentes com n8n e integração de APIs. Tenho forte interesse em Inteligência Artificial, bitcoin, infraestrutura, automação e inovação tecnológica, sempre conectando tecnologia, dados e uma visão analítica sobre o impacto da tecnologia nos negócios e na sociedade.",
+    "setup": {
+      "hardware": {
+        "processador": "Ryzen 5 1600 AF",
+        "gpu": "RX 570 4GB Dataland",
+        "ram": "16 GB",
+        "armazenamento": [
+          "SSD SATA 500 GB — Windows 11",
+          "SSD NVMe 500 GB — Arch Linux"
+        ]
+      },
+      "monitores": [
+        "Samsung T350 — 24”, Full HD, 75 Hz, FreeSync",
+        "LG 24MP400-B — 23.8”, Full HD, 75 Hz, 5 ms"
+      ],
+      "perifericos": {
+        "teclados": ["Mitra Switch Brown", "Redragon Fizz RGB"],
+        "mouse": "Redragon Cobra",
+        "microfone": "Fifine K669"
+      },
+      "gabinete": "Redragon Wheel Jack (Branco)",
+      "software": {
+        "os": ["Windows 11", "Arch Linux"],
+        "ide": "VSCodium"
+      }
+    },
+    "homelab": {
+      "specs": {
+        "cpu": "Intel Xeon E5 2628 V4",
+        "ram": "16 GB (2*8G)",
+        "os": "Proxmox VE"
+      },
+      "services": [
+        "Este Website (danielcosta.dev.br)",
+        "Bitcoin Full Node",
+        "Lightning Network Node",
+        "Immich (Gerenciamento de Fotos)",
+        "n8n (Automação de Workflow)",
+        "Nginx Proxy Manager",
+        "Portainer (Docker Management)",
+        "Tailscale (VPN Mesh)",
+        "OpenClaw",
+        "AdGuard Home (DNS & Filtro)",
+        "UmbrelOS"
+      ]
+    }
+  },
+  "en": {
+    "skills": [
+      "Systems Analysis and Development", "SQL", "BI", "JavaScript","Vue","Arch Linux", "Proxmox", "Docker", "pfSense", "AI", "Bitcoin", "N8N", "DNS"
+    ],
+    "biography": "I am passionate about Technology, with a degree in Systems Analysis and Development and practical experience in SQL, Business Intelligence, Power BI, and indicator analysis. I work on transforming data into insights for process optimization, supporting strategic decisions based on KPIs and performance metrics. I have knowledge in Python, JavaScript, Vue, Linux (Arch Linux), virtualization, and infrastructure with Proxmox, Docker, and pfSense, as well as intelligent automation with n8n and API integration. I have a strong interest in Artificial Intelligence, Bitcoin, infrastructure, automation, and technological innovation, always connecting technology, data, and an analytical view on the impact of technology on business and society.",
+    "setup": {
+      "hardware": {
+        "processador": "Ryzen 5 1600 AF",
+        "gpu": "RX 570 4GB Dataland",
+        "ram": "16 GB",
+        "armazenamento": [
+          "SSD SATA 500 GB — Windows 11",
+          "SSD NVMe 500 GB — Arch Linux"
+        ]
+      },
+      "monitores": [
+        "Samsung T350 — 24”, Full HD, 75 Hz, FreeSync",
+        "LG 24MP400-B — 23.8”, Full HD, 75 Hz, 5 ms"
+      ],
+      "perifericos": {
+        "teclados": ["Mitra Switch Brown", "Redragon Fizz RGB"],
+        "mouse": "Redragon Cobra",
+        "microfone": "Fifine K669"
+      },
+      "gabinete": "Redragon Wheel Jack (Branco)",
+      "software": {
+        "os": ["Windows 11", "Arch Linux"],
+        "ide": "VSCodium"
+      }
+    },
+    "homelab": {
+      "specs": {
+        "cpu": "Intel Xeon E5 2628 V4",
+        "ram": "16 GB (2*8G)",
+        "os": "Proxmox VE"
+      },
+      "services": [
+        "This Website (danielcosta.dev.br)",
+        "Bitcoin Full Node",
+        "Lightning Network Node",
+        "Immich (Photo Management)",
+        "n8n (Workflow Automation)",
+        "Nginx Proxy Manager",
+        "Portainer (Docker Management)",
+        "Tailscale (Mesh VPN)",
+        "OpenClaw",
+        "AdGuard Home (DNS & Filter)",
+        "UmbrelOS"
+      ]
+    }
+  }
 }

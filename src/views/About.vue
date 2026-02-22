@@ -1,29 +1,36 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
+import { useI18n } from '../translator';
 
-const biography = ref('');
+const { currentLang, t } = useI18n();
+const profile = ref(null);
 
 onMounted(async () => {
   try {
     const response = await fetch('/profile.json');
-    const data = await response.json();
-    biography.value = data.biography;
+    profile.value = await response.json();
   } catch (error) {
-    console.error('Erro ao carregar biografia:', error);
+    console.error('Erro ao carregar perfil:', error);
   }
+});
+
+const biography = computed(() => {
+  return profile.value ? profile.value[currentLang.value].biography : '';
 });
 </script>
 
 <template>
   <div class="about-page">
-    <h1 class="title">Sobre Mim</h1>
-    <div class="bio-container">
+    <h1 class="title">{{ t('aboutTitle') }}</h1>
+    <div v-if="profile" class="bio-container">
       <p class="biography-text">
         {{ biography }}
       </p>
     </div>
+    <div v-else class="loading">{{ t('loading') }}</div>
+    
     <router-link to="/" class="back-link">
-      <i class="fa-solid fa-arrow-left"></i> Voltar ao Início
+      <i class="fa-solid fa-arrow-left"></i> {{ t('backToHome') }}
     </router-link>
   </div>
 </template>
@@ -62,6 +69,11 @@ onMounted(async () => {
   line-height: 1.8;
   text-align: justify;
   margin: 0;
+}
+
+.loading {
+  color: #a1a1aa;
+  margin: 2rem 0;
 }
 
 .back-link {

@@ -1,17 +1,30 @@
+<script setup>
+import { useI18n } from '../translator'
+
+const { currentLang, t, toggleLang } = useI18n()
+</script>
+
 <template>
   <nav class="main-nav">
-    <router-link to="/" class="nav-link">Home</router-link>
-    <router-link to="/sobre" class="nav-link">Sobre</router-link>
+    <router-link to="/" class="nav-link">{{ t('navHome') }}</router-link>
+    <router-link to="/sobre" class="nav-link">{{ t('navAbout') }}</router-link>
+    <router-link to="/setup" class="nav-link">{{ t('navSetup') }}</router-link>
+    <router-link to="/homelab" class="nav-link">{{ t('navHomelab') }}</router-link>
+    
+    <button @click="toggleLang" class="lang-switch">
+      {{ currentLang === 'pt' ? 'EN' : 'PT' }}
+    </button>
   </nav>
 </template>
 
 <style scoped>
 .main-nav {
   margin: 1rem 0 3rem;
-  display: flex !important;
-  flex-direction: row !important; /* Força horizontal */
+  display: flex;
+  flex-direction: row;
   justify-content: center;
-  gap: 2.5rem;
+  align-items: center;
+  gap: 2rem;
   width: 100%;
 }
 
@@ -19,7 +32,7 @@
   color: #52525b;
   text-decoration: none;
   font-weight: 700;
-  font-size: 0.9rem;
+  font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   transition: all 0.3s ease;
@@ -44,6 +57,29 @@
   height: 2px;
   background: linear-gradient(90deg, #7c3aed, #db2777);
   border-radius: 2px;
-  box-shadow: 0 0 10px rgba(124, 58, 237, 0.6);
+}
+
+.lang-switch {
+  background: transparent;
+  border: 1px solid #27272a;
+  color: #a1a1aa;
+  padding: 0.2rem 0.5rem;
+  border-radius: 4px;
+  cursor: pointer;
+  font-weight: 700;
+  font-size: 0.7rem;
+  transition: all 0.2s ease;
+}
+
+.lang-switch:hover {
+  border-color: #7c3aed;
+  color: #ffffff;
+}
+
+@media (max-width: 480px) {
+  .main-nav {
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
 }
 </style>

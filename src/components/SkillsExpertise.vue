@@ -1,4 +1,8 @@
 <script setup>
+import { useI18n } from '../translator'
+
+const { t } = useI18n()
+
 defineProps({
   skills: Array
 })
@@ -7,7 +11,7 @@ defineProps({
 <template>
   <div class="skills-section">
     <div class="skills-header">
-      <span>SKILLS & EXPERTISE</span>
+      <span>{{ t('skillsTitle') }}</span>
     </div>
     <div class="skills-container">
       <span v-for="skill in skills" :key="skill" class="skill-tag">
@@ -16,7 +20,7 @@ defineProps({
     </div>
     
     <footer class="site-footer">
-      <p>Hosted on personal homelab via Cloudflare Tunnel</p>
+      <p>{{ t('hostedOn') }}</p>
     </footer>
   </div>
 </template>

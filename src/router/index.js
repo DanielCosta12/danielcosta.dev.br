@@ -10,8 +10,17 @@ const routes = [
   {
     path: '/sobre',
     name: 'About',
-    // lazy-loading
     component: () => import('../views/About.vue')
+  },
+  {
+    path: '/setup',
+    name: 'Setup',
+    component: () => import('../views/Setup.vue')
+  },
+  {
+    path: '/homelab',
+    name: 'Homelab',
+    component: () => import('../views/Homelab.vue')
   }
 ]
 

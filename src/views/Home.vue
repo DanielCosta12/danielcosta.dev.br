@@ -1,16 +1,13 @@
 <script setup>
-import { ref, onMounted } from 'vue';
+import { ref, onMounted, computed } from 'vue';
 import ProfileHeader from '../components/ProfileHeader.vue';
 import SocialLinks from '../components/SocialLinks.vue';
 import SkillsExpertise from '../components/SkillsExpertise.vue';
+import { useI18n } from '../translator';
 
-const profileData = ref({
-  name: '',
-  image: '',
-  socialLinks: [],
-  skills: [],
-  biography: ''
-});
+const { currentLang, t } = useI18n();
+
+const profileData = ref(null);
 
 onMounted(async () => {
   try {
@@ -20,10 +17,14 @@ onMounted(async () => {
     console.error('Erro ao carregar os dados:', error);
   }
 });
+
+const skills = computed(() => {
+  return profileData.value ? profileData.value[currentLang.value].skills : [];
+});
 </script>
 
 <template>
-  <div v-if="profileData.name" class="view-content">
+  <div v-if="profileData" class="view-content">
     <ProfileHeader 
       :name="profileData.name" 
       :image="profileData.image" 
@@ -31,9 +32,9 @@ onMounted(async () => {
     
     <SocialLinks :links="profileData.socialLinks" />
     
-    <SkillsExpertise :skills="profileData.skills" />
+    <SkillsExpertise :skills="skills" />
   </div>
-  <div v-else class="loading">Carregando perfil...</div>
+  <div v-else class="loading">{{ t('loading') }}</div>
 </template>
 
 <style scoped>
