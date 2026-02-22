@@ -17,7 +17,9 @@
 ---
 
 ## 📸 Preview
-
+<div align="center">
+  <img src="./assets/danielcosta.dev.br.gif" alt="Preview do site danielcosta.dev.br" width="100%"/>
+</div>
 > *Acesse [danielcosta.dev.br](https://danielcosta.dev.br) para ver o site ao vivo.*
 
 ---
