@@ -15,14 +15,15 @@ onMounted(async () => {
 });
 
 const biography = computed(() => {
-  return profile.value ? profile.value[currentLang.value].biography : '';
+  if (!profile.value || !profile.value[currentLang.value]) return '';
+  return profile.value[currentLang.value].biography || '';
 });
 </script>
 
 <template>
   <div class="about-page">
     <h1 class="title">{{ t('aboutTitle') }}</h1>
-    <div v-if="profile" class="bio-container">
+    <div v-if="profile && profile[currentLang]" class="bio-container">
       <p class="biography-text">
         {{ biography }}
       </p>
@@ -36,6 +37,7 @@ const biography = computed(() => {
 </template>
 
 <style scoped>
+/* Estilos mantidos */
 .about-page {
   text-align: center;
   margin-top: 2rem;
@@ -43,7 +45,6 @@ const biography = computed(() => {
   max-width: 700px;
   width: 100%;
 }
-
 .title {
   font-size: 2.5rem;
   font-weight: 800;
@@ -53,7 +54,6 @@ const biography = computed(() => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .bio-container {
   background-color: #0a0a0a;
   border: 1px solid #1f1f23;
@@ -62,7 +62,6 @@ const biography = computed(() => {
   box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
   margin-bottom: 3rem;
 }
-
 .biography-text {
   color: #d4d4d8;
   font-size: 1.1rem;
@@ -70,12 +69,10 @@ const biography = computed(() => {
   text-align: justify;
   margin: 0;
 }
-
 .loading {
   color: #a1a1aa;
   margin: 2rem 0;
 }
-
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -85,12 +82,10 @@ const biography = computed(() => {
   font-weight: 600;
   transition: all 0.2s ease;
 }
-
 .back-link:hover {
   transform: translateX(-5px);
   color: #a78bfa;
 }
-
 @media (max-width: 480px) {
   .bio-container {
     padding: 1.5rem;

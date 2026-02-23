@@ -15,7 +15,8 @@ onMounted(async () => {
 });
 
 const setup = computed(() => {
-  return profile.value ? profile.value[currentLang.value].setup : null;
+  if (!profile.value || !profile.value[currentLang.value]) return null;
+  return profile.value[currentLang.value].setup || null;
 });
 </script>
 
@@ -24,7 +25,6 @@ const setup = computed(() => {
     <h1 class="title">{{ t('setupTitle') }}</h1>
     
     <div v-if="setup" class="setup-container">
-      <!-- Hardware Section -->
       <div class="setup-section">
         <h2><i class="fa-solid fa-microchip"></i> {{ t('hardware') }}</h2>
         <div class="setup-details">
@@ -40,7 +40,6 @@ const setup = computed(() => {
         </div>
       </div>
 
-      <!-- Monitores Section -->
       <div class="setup-section">
         <h2><i class="fa-solid fa-desktop"></i> {{ t('monitors') }}</h2>
         <ul>
@@ -48,7 +47,6 @@ const setup = computed(() => {
         </ul>
       </div>
 
-      <!-- Periféricos Section -->
       <div class="setup-section">
         <h2><i class="fa-solid fa-keyboard"></i> {{ t('peripherals') }}</h2>
         <div class="setup-details">
@@ -63,13 +61,11 @@ const setup = computed(() => {
         </div>
       </div>
 
-      <!-- Gabinete Section -->
       <div class="setup-section">
         <h2><i class="fa-solid fa-box"></i> {{ t('case') }}</h2>
         <p>{{ setup.gabinete }}</p>
       </div>
 
-      <!-- Software Section -->
       <div class="setup-section">
         <h2><i class="fa-solid fa-code"></i> {{ t('software') }}</h2>
         <p><strong>OS:</strong> {{ setup.software.os.join(' & ') }}</p>
@@ -85,6 +81,7 @@ const setup = computed(() => {
 </template>
 
 <style scoped>
+/* Estilos mantidos */
 .setup-page {
   text-align: center;
   margin-top: 2rem;
@@ -92,7 +89,6 @@ const setup = computed(() => {
   max-width: 700px;
   width: 100%;
 }
-
 .title {
   font-size: 2.5rem;
   font-weight: 800;
@@ -102,7 +98,6 @@ const setup = computed(() => {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
 .setup-container {
   background-color: #0a0a0a;
   border: 1px solid #1f1f23;
@@ -112,19 +107,16 @@ const setup = computed(() => {
   margin-bottom: 3rem;
   text-align: left;
 }
-
 .setup-section {
   margin-bottom: 2rem;
   border-bottom: 1px solid #1f1f23;
   padding-bottom: 1.5rem;
 }
-
 .setup-section:last-child {
   margin-bottom: 0;
   border-bottom: none;
   padding-bottom: 0;
 }
-
 .setup-section h2 {
   color: #7c3aed;
   font-size: 1.25rem;
@@ -133,28 +125,23 @@ const setup = computed(() => {
   align-items: center;
   gap: 0.75rem;
 }
-
 .setup-details p {
   margin: 0.4rem 0;
   color: #d4d4d8;
 }
-
 .nested-list {
   margin-top: 0.5rem;
 }
-
 .nested-list strong {
   display: block;
   margin-bottom: 0.3rem;
   color: #ffffff;
 }
-
 .setup-section ul {
   list-style: none;
   padding: 0;
   margin: 0.5rem 0;
 }
-
 .setup-section li {
   color: #d4d4d8;
   margin-bottom: 0.4rem;
@@ -162,19 +149,16 @@ const setup = computed(() => {
   position: relative;
   font-size: 0.95rem;
 }
-
 .setup-section li::before {
   content: "→";
   color: #7c3aed;
   position: absolute;
   left: 0;
 }
-
 .loading {
   color: #a1a1aa;
   margin: 2rem 0;
 }
-
 .back-link {
   display: inline-flex;
   align-items: center;
@@ -184,12 +168,10 @@ const setup = computed(() => {
   font-weight: 600;
   transition: all 0.2s ease;
 }
-
 .back-link:hover {
   transform: translateX(-5px);
   color: #a78bfa;
 }
-
 @media (max-width: 480px) {
   .setup-container {
     padding: 1.5rem;

@@ -19,7 +19,8 @@ onMounted(async () => {
 });
 
 const skills = computed(() => {
-  return profileData.value ? profileData.value[currentLang.value].skills : [];
+  if (!profileData.value || !profileData.value[currentLang.value]) return [];
+  return profileData.value[currentLang.value].skills || [];
 });
 </script>
 
