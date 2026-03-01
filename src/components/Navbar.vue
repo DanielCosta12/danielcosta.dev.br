@@ -8,6 +8,7 @@ const { currentLang, t, toggleLang } = useI18n()
   <nav class="main-nav">
     <router-link to="/" class="nav-link">{{ t('navHome') }}</router-link>
     <router-link to="/sobre" class="nav-link">{{ t('navAbout') }}</router-link>
+    <router-link to="/projetos" class="nav-link">{{ t('navProjects') }}</router-link>
     <router-link to="/setup" class="nav-link">{{ t('navSetup') }}</router-link>
     <router-link to="/homelab" class="nav-link">{{ t('navHomelab') }}</router-link>
     

@@ -15,6 +15,7 @@ const translations = {
   pt: {
     navHome: 'Home',
     navAbout: 'Sobre',
+    navProjects: 'Projetos',
     navSetup: 'Setup',
     navHomelab: 'Homelab',
     backToHome: 'Voltar ao Início',
@@ -22,6 +23,7 @@ const translations = {
     copyright: 'Todos os direitos reservados.',
     setupTitle: 'Meu Setup',
     homelabTitle: 'Meu Homelab',
+    projectsTitle: 'Meus Projetos',
     hardware: 'Hardware',
     monitors: 'Monitores',
     peripherals: 'Periféricos',
@@ -43,6 +45,7 @@ const translations = {
   en: {
     navHome: 'Home',
     navAbout: 'About',
+    navProjects: 'Projects',
     navSetup: 'Setup',
     navHomelab: 'Homelab',
     backToHome: 'Back to Home',
@@ -50,6 +53,7 @@ const translations = {
     copyright: 'All rights reserved.',
     setupTitle: 'My Setup',
     homelabTitle: 'My Homelab',
+    projectsTitle: 'My Projects',
     hardware: 'Hardware',
     monitors: 'Monitors',
     peripherals: 'Peripherals',
