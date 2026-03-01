@@ -7,7 +7,7 @@ const profile = ref(null);
 
 onMounted(async () => {
   try {
-    const response = await fetch('/profile.json');
+    const response = await fetch('/site-data.json');
     profile.value = await response.json();
   } catch (error) {
     console.error('Erro ao carregar perfil:', error);

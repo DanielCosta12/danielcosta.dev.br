@@ -4,13 +4,16 @@ import { useI18n } from '../translator';
 
 const { currentLang, t } = useI18n();
 const profile = ref(null);
+const errorLoading = ref(false);
 
 onMounted(async () => {
   try {
-    const response = await fetch('/profile.json');
+    const response = await fetch('/site-data.json');
+    if (!response.ok) throw new Error('Falha ao carregar');
     profile.value = await response.json();
   } catch (error) {
     console.error('Erro ao carregar projetos:', error);
+    errorLoading.value = true;
   }
 });
 
@@ -38,6 +41,7 @@ const projects = computed(() => {
         </div>
       </div>
     </div>
+    <div v-else-if="errorLoading" class="loading">Erro ao carregar os dados.</div>
     <div v-else class="loading">{{ t('loading') }}</div>
 
     <router-link to="/" class="back-link">
