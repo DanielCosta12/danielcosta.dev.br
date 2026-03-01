@@ -31,6 +31,13 @@ const projects = computed(() => {
       <div v-for="project in projects" :key="project.title" class="project-card">
         <h3>{{ project.title }}</h3>
         <p class="description">{{ project.description }}</p>
+        
+        <div v-if="project.skills" class="skills-container">
+          <span v-for="skill in project.skills" :key="skill" class="skill-tag">
+            {{ skill }}
+          </span>
+        </div>
+
         <div class="card-footer">
           <a v-if="project.link !== '#'" :href="project.link" target="_blank" class="project-link">
             {{ project.linkText }} <i class="fa-solid fa-arrow-up-right-from-square"></i>
@@ -110,6 +117,29 @@ const projects = computed(() => {
   line-height: 1.6;
   margin-bottom: 1.5rem;
   flex-grow: 1;
+}
+
+.skills-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.5rem;
+  justify-content: flex-start;
+}
+
+.skill-tag {
+  background-color: #111111;
+  color: #a1a1aa;
+  padding: 0.3rem 0.7rem;
+  border-radius: 20px;
+  font-size: 0.75rem;
+  border: 1px solid #1f1f23;
+  transition: all 0.2s ease;
+}
+
+.skill-tag:hover {
+  color: #ffffff;
+  border-color: #7c3aed;
 }
 
 .card-footer {

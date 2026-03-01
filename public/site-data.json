@@ -4,7 +4,7 @@
   "socialLinks": [
     { "url": "https://www.linkedin.com/in/daniel-costa12/", "text": "LinkedIn" },
     { "url": "https://github.com/danielcosta12", "text": "GitHub" },
-    { "url": "mailto:danieldossantosdacosta@gmail.com", "text": "Gmail" },
+    { "url": "mailto:contato@danielcosta.dev.br", "text": "E-mail" },
     { "url": "https://wa.me/5521968318309", "text": "WhatsApp" }
   ],
   "pt": {
@@ -59,40 +59,46 @@
     },
     "projects": [
       {
-        "title": "🌐 danielcosta.dev.br — Portfólio Pessoal",
-        "description": "Site pessoal desenvolvido com Vue.js, containerizado com Docker e servido via Nginx. Funciona como portfólio, hub de links e vitrine das minhas habilidades e projetos.",
+        "title": "danielcosta.dev.br — Portfólio Pessoal",
+        "description": "Site pessoal desenvolvido com Vue.js e Vite, containerizado com Docker e servido via Nginx através do Cloudflare. Funciona como portfólio, hub de links e vitrine das minhas habilidades e projetos.",
         "link": "https://danielcosta.dev.br",
-        "linkText": "danielcosta.dev.br"
+        "linkText": "danielcosta.dev.br",
+        "skills": ["Vue.js", "Vite", "Cloudflare", "Docker", "Nginx", "JavaScript"]
       },
       {
-        "title": "🛡️ AdGuard Home — DNS Filtering na Rede Local",
+        "title": "AdGuard Home — DNS Filtering na Rede Local",
         "description": "Servidor DNS próprio rodando em homelab com AdGuard Home, bloqueando anúncios, trackers e conteúdo indesejado para todos os dispositivos da rede. Nas últimas 24h: 46.826 consultas DNS processadas, com 1.738 bloqueios por filtros (3,71%).",
         "link": "#",
-        "linkText": "Self-hosted"
+        "linkText": "Self-hosted",
+        "skills": ["DNS", "Networking", "Self-hosted", "Security"]
       },
       {
-        "title": "🎬 Cortes do Direto de Vegas — Canal YouTube",
+        "title": "Cortes do Direto de Vegas — Canal YouTube",
         "description": "Canal no YouTube dedicado a cortes e highlights de lives, com foco em edição ágil e consistência de publicação.",
         "link": "https://www.youtube.com/@CortesdoDiretodeVegas",
-        "linkText": "Ver no YouTube"
+        "linkText": "Ver no YouTube",
+        "skills": ["Edição de Vídeo", "Contar História", "Marketing", "Design"]
       },
       {
-        "title": "📱 Do Silêncio ao Viral — Canal TikTok",
+        "title": "Do Silêncio ao Viral — Canal TikTok",
         "description": "Canal no TikTok focado em criação e estratégia de conteúdo, explorando o processo de crescimento orgânico em redes sociais.",
         "link": "https://www.tiktok.com/@dosilencioaoviral_ofc",
-        "linkText": "Ver no TikTok"
+        "linkText": "Ver no TikTok",
+        "skills": ["Edição de Vídeo", "Contar Histórias Curtas", "Marketing", "Social Media"]
       },
       {
-        "title": "₿ BTC-USD Fees — Bot de Monitoramento Bitcoin",
+        "title": "BTC-USD Fees — Bot de Monitoramento Bitcoin",
         "description": "Bot para Telegram desenvolvido em Python que envia automaticamente, a cada hora, o preço do Bitcoin e as taxas de transação da Mempool.",
         "link": "https://github.com/DanielCosta12/btc_usd_fees",
-        "linkText": "Ver no GitHub"
+        "linkText": "Ver no GitHub",
+        "skills": ["Python", "Bitcoin", "Telegram API", "Automation"]
       },
       {
-        "title": "🔗 Mapp GetLinks — Automação de Coleta de Rotas",
+        "title": "Mapp GetLinks — Automação de Coleta de Rotas",
         "description": "Script Node.js que realiza login automatizado em um sistema de rastreamento, extrai os links de acompanhamento de rotas e os envia via Telegram todos os dias úteis às 8h30.",
         "link": "https://github.com/danielcosta12/mapp-getlinks",
-        "linkText": "Ver no GitHub"
+        "linkText": "Ver no GitHub",
+        "skills": ["Node.js", "Automation", "Web Scraping", "Telegram API"]
       }
     ]
   },
@@ -148,40 +154,46 @@
     },
     "projects": [
       {
-        "title": "🌐 danielcosta.dev.br — Personal Portfolio",
-        "description": "Personal website developed with Vue.js, containerized with Docker and served via Nginx. Acts as a portfolio, link hub and showcase for my skills and projects.",
+        "title": "danielcosta.dev.br — Personal Portfolio",
+        "description": "Personal website developed with Vue.js and Vite, containerized with Docker and served via Nginx through Cloudflare. Acts as a portfolio, link hub and showcase for my skills and projects.",
         "link": "https://danielcosta.dev.br",
-        "linkText": "danielcosta.dev.br"
+        "linkText": "danielcosta.dev.br",
+        "skills": ["Vue.js", "Vite", "Cloudflare", "Docker", "Nginx", "JavaScript"]
       },
       {
-        "title": "🛡️ AdGuard Home — DNS Filtering on Local Network",
+        "title": "AdGuard Home — DNS Filtering on Local Network",
         "description": "Own DNS server running in homelab with AdGuard Home, blocking ads, trackers and unwanted content for all devices on the network. In the last 24h: 46,826 DNS queries processed, with 1,738 blocks by filters (3.71%).",
         "link": "#",
-        "linkText": "Self-hosted"
+        "linkText": "Self-hosted",
+        "skills": ["DNS", "Networking", "Self-hosted", "Security"]
       },
       {
-        "title": "🎬 Cortes do Direto de Vegas — YouTube Channel",
+        "title": "Cortes do Direto de Vegas — YouTube Channel",
         "description": "YouTube channel dedicated to clips and highlights of lives, focusing on agile editing and publication consistency.",
         "link": "https://www.youtube.com/@CortesdoDiretodeVegas",
-        "linkText": "View on YouTube"
+        "linkText": "View on YouTube",
+        "skills": ["Video Editing", "Storytelling", "Marketing", "Design"]
       },
       {
-        "title": "📱 Do Silêncio ao Viral — TikTok Channel",
+        "title": "Do Silêncio ao Viral — TikTok Channel",
         "description": "TikTok channel focused on content creation and strategy, exploring the organic growth process on social networks.",
         "link": "https://www.tiktok.com/@dosilencioaoviral_ofc",
-        "linkText": "View on TikTok"
+        "linkText": "View on TikTok",
+        "skills": ["Video Editing", "Storytelling", "Marketing", "Social Media"]
       },
       {
-        "title": "₿ BTC-USD Fees — Bitcoin Monitoring Bot",
+        "title": "BTC-USD Fees — Bitcoin Monitoring Bot",
         "description": "Telegram bot developed in Python that automatically sends, every hour, the Bitcoin price and transaction fees from the Mempool.",
         "link": "https://github.com/DanielCosta12/btc_usd_fees",
-        "linkText": "View on GitHub"
+        "linkText": "View on GitHub",
+        "skills": ["Python", "Bitcoin", "Telegram API", "Automation"]
       },
       {
-        "title": "🔗 Mapp GetLinks — Route Collection Automation",
+        "title": "Mapp GetLinks — Route Collection Automation",
         "description": "Node.js script that performs automated login in a tracking system, extracts route tracking links and sends them via Telegram every business day at 8:30 am.",
         "link": "https://github.com/danielcosta12/mapp-getlinks",
-        "linkText": "View on GitHub"
+        "linkText": "View on GitHub",
+        "skills": ["Node.js", "Automation", "Web Scraping", "Telegram API"]
       }
     ]
   }

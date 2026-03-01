@@ -7,7 +7,7 @@ function getIcon(text) {
   const lowerText = text.toLowerCase();
   if (lowerText.includes('linkedin')) return 'fa-brands fa-linkedin-in';
   if (lowerText.includes('github')) return 'fa-brands fa-github';
-  if (lowerText.includes('gmail')) return 'fa-solid fa-envelope';
+  if (lowerText.includes('gmail') || lowerText.includes('email') || lowerText.includes('e-mail')) return 'fa-solid fa-envelope';
   if (lowerText.includes('whatsapp')) return 'fa-brands fa-whatsapp';
   return 'fa-solid fa-link';
 }
