@@ -1,25 +1,15 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useI18n } from '../translator';
+import { useProfile } from '../store/profile';
 
-const { currentLang, t } = useI18n();
-const profile = ref(null);
-const errorLoading = ref(false);
+const { t } = useI18n();
+const { translatedData, loading, error, loadProfile } = useProfile();
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/site-data.json');
-    if (!response.ok) throw new Error('Falha ao carregar');
-    profile.value = await response.json();
-  } catch (error) {
-    console.error('Erro ao carregar projetos:', error);
-    errorLoading.value = true;
-  }
-});
+onMounted(loadProfile);
 
 const projects = computed(() => {
-  if (!profile.value || !profile.value[currentLang.value]) return [];
-  return profile.value[currentLang.value].projects || [];
+  return translatedData.value?.projects || [];
 });
 </script>
 
@@ -48,8 +38,8 @@ const projects = computed(() => {
         </div>
       </div>
     </div>
-    <div v-else-if="errorLoading" class="loading">Erro ao carregar os dados.</div>
-    <div v-else class="loading">{{ t('loading') }}</div>
+    <div v-else-if="error" class="loading">{{ error }}</div>
+    <div v-else-if="loading" class="loading">{{ t('loading') }}</div>
 
     <router-link to="/" class="back-link">
       <i class="fa-solid fa-arrow-left"></i> {{ t('backToHome') }}

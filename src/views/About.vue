@@ -1,34 +1,27 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useI18n } from '../translator';
+import { useProfile } from '../store/profile';
 
-const { currentLang, t } = useI18n();
-const profile = ref(null);
+const { t } = useI18n();
+const { translatedData, loading, loadProfile } = useProfile();
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/site-data.json');
-    profile.value = await response.json();
-  } catch (error) {
-    console.error('Erro ao carregar perfil:', error);
-  }
-});
+onMounted(loadProfile);
 
 const biography = computed(() => {
-  if (!profile.value || !profile.value[currentLang.value]) return '';
-  return profile.value[currentLang.value].biography || '';
+  return translatedData.value?.biography || '';
 });
 </script>
 
 <template>
   <div class="about-page">
     <h1 class="title">{{ t('aboutTitle') }}</h1>
-    <div v-if="profile && profile[currentLang]" class="bio-container">
+    <div v-if="translatedData" class="bio-container">
       <p class="biography-text">
         {{ biography }}
       </p>
     </div>
-    <div v-else class="loading">{{ t('loading') }}</div>
+    <div v-else-if="loading" class="loading">{{ t('loading') }}</div>
     
     <router-link to="/" class="back-link">
       <i class="fa-solid fa-arrow-left"></i> {{ t('backToHome') }}

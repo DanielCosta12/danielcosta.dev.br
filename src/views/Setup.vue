@@ -1,22 +1,15 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import { useI18n } from '../translator';
+import { useProfile } from '../store/profile';
 
-const { currentLang, t } = useI18n();
-const profile = ref(null);
+const { t } = useI18n();
+const { translatedData, loading, loadProfile } = useProfile();
 
-onMounted(async () => {
-  try {
-    const response = await fetch('/site-data.json');
-    profile.value = await response.json();
-  } catch (error) {
-    console.error('Erro ao carregar setup:', error);
-  }
-});
+onMounted(loadProfile);
 
 const setup = computed(() => {
-  if (!profile.value || !profile.value[currentLang.value]) return null;
-  return profile.value[currentLang.value].setup || null;
+  return translatedData.value?.setup || null;
 });
 </script>
 
@@ -72,7 +65,7 @@ const setup = computed(() => {
         <p><strong>IDE:</strong> {{ setup.software.ide }}</p>
       </div>
     </div>
-    <div v-else class="loading">{{ t('loading') }}</div>
+    <div v-else-if="loading" class="loading">{{ t('loading') }}</div>
 
     <router-link to="/" class="back-link">
       <i class="fa-solid fa-arrow-left"></i> {{ t('backToHome') }}

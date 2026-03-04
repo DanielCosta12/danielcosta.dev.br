@@ -1,41 +1,33 @@
 <script setup>
-import { ref, onMounted, computed } from 'vue';
+import { onMounted, computed } from 'vue';
 import ProfileHeader from '../components/ProfileHeader.vue';
 import SocialLinks from '../components/SocialLinks.vue';
 import SkillsExpertise from '../components/SkillsExpertise.vue';
 import { useI18n } from '../translator';
+import { useProfile } from '../store/profile';
 
-const { currentLang, t } = useI18n();
+const { t } = useI18n();
+const { globalData, translatedData, loading, loadProfile } = useProfile();
 
-const profileData = ref(null);
-
-onMounted(async () => {
-  try {
-    const response = await fetch('/site-data.json');
-    profileData.value = await response.json();
-  } catch (error) {
-    console.error('Erro ao carregar os dados:', error);
-  }
-});
+onMounted(loadProfile);
 
 const skills = computed(() => {
-  if (!profileData.value || !profileData.value[currentLang.value]) return [];
-  return profileData.value[currentLang.value].skills || [];
+  return translatedData.value?.skills || [];
 });
 </script>
 
 <template>
-  <div v-if="profileData" class="view-content">
+  <div v-if="globalData" class="view-content">
     <ProfileHeader 
-      :name="profileData.name" 
-      :image="profileData.image" 
+      :name="globalData.name" 
+      :image="globalData.image" 
     />
     
-    <SocialLinks :links="profileData.socialLinks" />
+    <SocialLinks :links="globalData.socialLinks" />
     
     <SkillsExpertise :skills="skills" />
   </div>
-  <div v-else class="loading">{{ t('loading') }}</div>
+  <div v-else-if="loading" class="loading">{{ t('loading') }}</div>
 </template>
 
 <style scoped>
