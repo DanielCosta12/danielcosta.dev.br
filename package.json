@@ -10,7 +10,8 @@
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.4",
-    "vite": "^7.2.4"
+    "vite": "^7.2.4",
+    "vite-plugin-sitemap": "^0.8.2"
   },
   "dependencies": {
     "vue": "^3.5.28",
