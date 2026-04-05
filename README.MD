@@ -38,67 +38,66 @@ Este é meu site pessoal e portfólio, onde apresento meus projetos, habilidades
 | Frontend | Vue 3 + Vite + CSS |
 | Servidor Web | Nginx (servindo arquivos estáticos do build) |
 | Containerização | Docker + Docker Compose |
-| Gerenciamento | Portainer |
+| Gerenciamento | Portainer GitOps |
 | Tunelamento | Cloudflare Tunnel |
-| Infraestrutura | Proxmox + Umbrel (homelab) |
+| Infraestrutura | Proxmox (homelab) |
 
 ---
 
 ## 🏗️ Infraestrutura
 
-O site é hospedado em um servidor doméstico (**homelab**) rodando **Proxmox** como hipervisor, com **Umbrel** como base do sistema. Toda a stack de deploy é orquestrada via **Docker Compose** com três containers principais:
+O site é hospedado em um servidor doméstico (**homelab**) rodando **Proxmox** como hipervisor. O deploy é orquestrado via **Portainer GitOps** com dois containers principais, construídos a partir de um **multi-stage Dockerfile**:
 
 ```
 ┌─────────────────────────────────────────────────────┐
 │                    HOMELAB                          │
 │                                                     │
-│  ┌──────────┐    ┌──────────┐    ┌──────────────┐  │
-│  │ meu-site │ -> │ servidor │ <- │  cloudflared │  │
-│  │  (Node)  │    │  (Nginx) │    │   (Tunnel)   │  │
-│  └──────────┘    └──────────┘    └──────┬───────┘  │
-│                                         │           │
-└─────────────────────────────────────────┼───────────┘
-                                          │
-                              ┌───────────▼───────────┐
-                              │   Cloudflare Network   │
-                              └───────────┬────────────┘
-                                          │
-                              ┌───────────▼────────────┐
-                              │   danielcosta.dev.br   │
-                              └────────────────────────┘
+│  ┌───────────────────────┐    ┌──────────────────┐  │
+│  │  danielcosta-site     │    │   cloudflared    │  │
+│  │  (Nginx + Vue build)  │    │    (Tunnel)      │  │
+│  └───────────────────────┘    └────────┬─────────┘  │
+│                                        │             │
+└────────────────────────────────────────┼─────────────┘
+                                         │
+                             ┌───────────▼───────────┐
+                             │   Cloudflare Network   │
+                             └───────────┬────────────┘
+                                         │
+                             ┌───────────▼────────────┐
+                             │   danielcosta.dev.br   │
+                             └────────────────────────┘
 ```
 
 **Como funciona cada container:**
 
-- **`meu-site`** — Container Node (Alpine) que clona o repositório, instala as dependências e executa o build (`npm run build`), exportando os arquivos para um volume compartilhado.
-- **`servidor`** — Container Nginx que serve os arquivos estáticos gerados pelo build via volume compartilhado, com `read-only` para segurança.
+- **`danielcosta-site`** — Build multi-stage: Stage 1 usa Node 20 Alpine para instalar dependências e gerar o build do Vue. Stage 2 usa Nginx Alpine para servir os arquivos estáticos do `dist/`.
 - **`cloudflared`** — Container oficial da Cloudflare que cria um túnel seguro entre o servidor doméstico e a internet, sem necessidade de IP público ou abertura de portas.
 
 ```yaml
 services:
-  meu-site:
-    image: node:alpine
-    command: >
-      sh -c "apk add git &&
-      git clone https://github.com/DanielCosta12/danielcosta.git /app &&
-      cd /app && npm install && npm run build &&
-      cp -r /app/dist/* /output"
-    volumes:
-      - site-dist:/output
-
-  servidor:
-    image: nginx:alpine
-    volumes:
-      - site-dist:/usr/share/nginx/html:ro
+  site:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: danielcosta-vue
+    container_name: danielcosta-site
     restart: always
+    networks:
+      - app
 
   cloudflared:
     image: cloudflare/cloudflared:latest
-    command: tunnel --no-autoupdate run --token SEU_TOKEN_AQUI
+    container_name: cloudflared
+    command: tunnel --no-autoupdate run
+    environment:
+      - TUNNEL_TOKEN=${KEY}
     restart: always
+    networks:
+      - app
 
-volumes:
-  site-dist:
+networks:
+  app:
+    driver: bridge
 ```
 
 ---
@@ -107,8 +106,8 @@ volumes:
 
 ```bash
 # 1. Clone o repositório
-git clone https://github.com/DanielCosta12/danielcosta.git
-cd danielcosta
+git clone https://github.com/DanielCosta12/danielcosta.dev.br.git
+cd danielcosta.dev.br
 
 # 2. Instale as dependências
 npm install
@@ -124,7 +123,12 @@ npm run build
 
 ## 📦 Deploy
 
-O deploy é feito **manualmente via Portainer**: basta reiniciar o container `meu-site`, que automaticamente clona o repositório atualizado e regera o build de produção. O container `servidor` (Nginx) passa a servir os novos arquivos logo em seguida.
+O deploy é gerenciado pelo **Portainer GitOps**:
+
+1. Portainer clona este repositório automaticamente
+2. Faz o build multi-stage usando o `Dockerfile`
+3. Sobe os containers `danielcosta-site` e `cloudflared`
+4. O Cloudflare Tunnel expõe o site em `danielcosta.dev.br`
 
 > **Nenhuma porta do roteador é aberta.** Todo o tráfego externo passa pelo Cloudflare Tunnel de forma segura e criptografada.
 
