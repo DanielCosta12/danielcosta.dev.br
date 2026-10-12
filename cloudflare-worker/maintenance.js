@@ -124,16 +124,17 @@ const maintenanceHTML = `
 </html>
 `;
 
-addEventListener('fetch', event => {
-  event.respondWith(handleRequest(event.request))
-})
-
-async function handleRequest(request) {
-  return new Response(maintenanceHTML, {
-    status: 503,
-    headers: {
-      'content-type': 'text/html;charset=UTF-8',
-      'Cache-Control': 'no-cache, no-store, must-revalidate',
-    },
-  })
+export default {
+  async fetch() {
+    return new Response(maintenanceHTML, {
+      status: 503,
+      headers: {
+        'content-type': 'text/html;charset=UTF-8',
+        'Cache-Control': 'no-cache, no-store, must-revalidate',
+        // Avisa buscadores que é temporário (não remove as páginas do índice)
+        'Retry-After': '3600',
+        'X-Robots-Tag': 'noindex',
+      },
+    })
+  },
 }

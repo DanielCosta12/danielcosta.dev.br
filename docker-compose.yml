@@ -1,5 +1,3 @@
-version: "3.8"
-
 services:
   site:
     build:
@@ -8,16 +6,34 @@ services:
     image: danielcosta-vue
     container_name: danielcosta-site
     restart: always
+    # nginx roda sem root; isto permite que ele use a porta 80 dentro do container
+    sysctls:
+      - net.ipv4.ip_unprivileged_port_start=0
+    read_only: true
+    tmpfs:
+      - /tmp
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
     networks:
       - app
 
   cloudflared:
-    image: cloudflare/cloudflared:latest
+    # versão fixa: atualize conscientemente (https://github.com/cloudflare/cloudflared/releases)
+    image: cloudflare/cloudflared:2026.10.0
     container_name: cloudflared
     command: tunnel --no-autoupdate run
     environment:
       - TUNNEL_TOKEN=${KEY}
     restart: always
+    read_only: true
+    cap_drop:
+      - ALL
+    security_opt:
+      - no-new-privileges:true
+    depends_on:
+      - site
     networks:
       - app
 

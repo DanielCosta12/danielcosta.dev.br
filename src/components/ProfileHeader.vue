@@ -1,52 +1,73 @@
 <script setup>
 defineProps({
   name: String,
-  image: String
+  image: String,
+  headline: String,
+  tagline: String
 })
 </script>
 
 <template>
-  <div class="profile-header">
+  <header class="profile-header">
     <div class="image-glow">
-      <img :src="image" class="profile-pic" :alt="name" />
+      <img :src="image" class="profile-pic" :alt="name" width="112" height="112" fetchpriority="high" />
     </div>
     <h1 class="name">{{ name }}</h1>
-  </div>
+    <p class="headline">{{ headline }}</p>
+    <p class="tagline">{{ tagline }}</p>
+  </header>
 </template>
 
 <style scoped>
 .profile-header {
-  margin: 0 auto 3rem;
+  margin: 0 auto 2.5rem;
   width: 100%;
   max-width: 600px;
-  text-align: center;
 }
 
 .image-glow {
-  position: relative;
   width: 120px;
   height: 120px;
   margin: 0 auto 1.5rem;
   border-radius: 50%;
   box-shadow: 0 0 40px 10px rgba(139, 92, 246, 0.4);
   padding: 4px;
-  background: linear-gradient(135deg, #7c3aed, #db2777);
+  background: linear-gradient(135deg, var(--accent), var(--accent-2));
 }
 
 .profile-pic {
+  display: block;
   width: 100%;
   height: 100%;
   border-radius: 50%;
   object-fit: cover;
-  background-color: #111;
-  border: 4px solid #000;
+  background-color: var(--surface-2);
+  border: 4px solid var(--bg);
 }
 
 .name {
   font-size: 2.2rem;
   font-weight: 800;
-  margin: 1rem 0 0.75rem;
+  line-height: 1.2;
+  margin: 1rem 0 0.5rem;
   letter-spacing: -0.04em;
-  color: #ffffff;
+}
+
+.headline {
+  color: var(--accent-text);
+  font-weight: 600;
+  margin: 0 0 0.5rem;
+}
+
+.tagline {
+  color: var(--text-muted);
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+@media (max-width: 480px) {
+  .name {
+    font-size: 1.75rem;
+  }
 }
 </style>

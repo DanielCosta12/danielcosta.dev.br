@@ -1,173 +1,138 @@
 <script setup>
-import { onMounted, computed } from 'vue';
-import { useI18n } from '../translator';
-import { useProfile } from '../store/profile';
+import IconCpu from '~icons/lucide/cpu'
+import IconMonitor from '~icons/lucide/monitor'
+import IconKeyboard from '~icons/lucide/keyboard'
+import IconBox from '~icons/lucide/box'
+import IconCode from '~icons/lucide/code'
+import { useI18n } from '../translator'
+import { useProfile } from '../store/profile'
 
-const { t } = useI18n();
-const { translatedData, loading, loadProfile } = useProfile();
-
-onMounted(loadProfile);
-
-const setup = computed(() => {
-  return translatedData.value?.setup || null;
-});
+const { t } = useI18n()
+const { globalData, translatedData } = useProfile()
+const setup = globalData.setup
 </script>
 
 <template>
-  <div class="setup-page">
-    <h1 class="title">{{ t('setupTitle') }}</h1>
-    
-    <div v-if="setup" class="setup-container">
-      <div class="setup-section">
-        <h2><i class="fa-solid fa-microchip"></i> {{ t('hardware') }}</h2>
-        <div class="setup-details">
-          <p><strong>{{ t('processor') }}:</strong> {{ setup.hardware.processador }}</p>
-          <p><strong>{{ t('gpu') }}:</strong> {{ setup.hardware.gpu }}</p>
-          <p><strong>{{ t('ram') }}:</strong> {{ setup.hardware.ram }}</p>
-          <div class="nested-list">
-            <strong>{{ t('storage') }}:</strong>
-            <ul>
-              <li v-for="item in setup.hardware.armazenamento" :key="item">{{ item }}</li>
-            </ul>
-          </div>
-        </div>
-      </div>
+  <div class="page">
+    <h1 class="page-title">{{ t('setupTitle') }}</h1>
 
-      <div class="setup-section">
-        <h2><i class="fa-solid fa-desktop"></i> {{ t('monitors') }}</h2>
-        <ul>
-          <li v-for="monitor in setup.monitores" :key="monitor">{{ monitor }}</li>
+    <div class="card">
+      <section class="setup-section">
+        <h2 class="section-title"><IconCpu class="icon" aria-hidden="true" /> {{ t('hardware') }}</h2>
+        <dl class="details">
+          <dt>{{ t('processor') }}</dt><dd>{{ setup.hardware.processor }}</dd>
+          <dt>{{ t('gpu') }}</dt><dd>{{ setup.hardware.gpu }}</dd>
+          <dt>{{ t('ram') }}</dt><dd>{{ setup.hardware.ram }}</dd>
+          <dt>{{ t('storage') }}</dt>
+          <dd>
+            <ul class="arrow-list">
+              <li v-for="item in setup.hardware.storage" :key="item">{{ item }}</li>
+            </ul>
+          </dd>
+        </dl>
+      </section>
+
+      <section class="setup-section">
+        <h2 class="section-title"><IconMonitor class="icon" aria-hidden="true" /> {{ t('monitors') }}</h2>
+        <ul class="arrow-list">
+          <li v-for="monitor in setup.monitors" :key="monitor">{{ monitor }}</li>
         </ul>
-      </div>
+      </section>
 
-      <div class="setup-section">
-        <h2><i class="fa-solid fa-keyboard"></i> {{ t('peripherals') }}</h2>
-        <div class="setup-details">
-          <div class="nested-list">
-            <strong>{{ t('keyboards') }}:</strong>
-            <ul>
-              <li v-for="teclado in setup.perifericos.teclados" :key="teclado">{{ teclado }}</li>
+      <section class="setup-section">
+        <h2 class="section-title"><IconKeyboard class="icon" aria-hidden="true" /> {{ t('peripherals') }}</h2>
+        <dl class="details">
+          <dt>{{ t('keyboards') }}</dt>
+          <dd>
+            <ul class="arrow-list">
+              <li v-for="keyboard in setup.peripherals.keyboards" :key="keyboard">{{ keyboard }}</li>
             </ul>
-          </div>
-          <p><strong>{{ t('mouse') }}:</strong> {{ setup.perifericos.mouse }}</p>
-          <p><strong>{{ t('mic') }}:</strong> {{ setup.perifericos.microfone }}</p>
-        </div>
-      </div>
+          </dd>
+          <dt>{{ t('mouse') }}</dt><dd>{{ setup.peripherals.mouse }}</dd>
+          <dt>{{ t('mic') }}</dt><dd>{{ setup.peripherals.mic }}</dd>
+        </dl>
+      </section>
 
-      <div class="setup-section">
-        <h2><i class="fa-solid fa-box"></i> {{ t('case') }}</h2>
-        <p>{{ setup.gabinete }}</p>
-      </div>
+      <section class="setup-section">
+        <h2 class="section-title"><IconBox class="icon" aria-hidden="true" /> {{ t('case') }}</h2>
+        <p class="plain">{{ setup.case }} ({{ translatedData.caseColor }})</p>
+      </section>
 
-      <div class="setup-section">
-        <h2><i class="fa-solid fa-code"></i> {{ t('software') }}</h2>
-        <p><strong>OS:</strong> {{ setup.software.os.join(' & ') }}</p>
-        <p><strong>IDE:</strong> {{ setup.software.ide }}</p>
-      </div>
+      <section class="setup-section">
+        <h2 class="section-title"><IconCode class="icon" aria-hidden="true" /> {{ t('software') }}</h2>
+        <dl class="details">
+          <dt>OS</dt><dd>{{ setup.software.os.join(' & ') }}</dd>
+          <dt>IDE</dt><dd>{{ setup.software.ide }}</dd>
+        </dl>
+      </section>
     </div>
-    <div v-else-if="loading" class="loading">{{ t('loading') }}</div>
-
-    <router-link to="/" class="back-link">
-      <i class="fa-solid fa-arrow-left"></i> {{ t('backToHome') }}
-    </router-link>
   </div>
 </template>
 
 <style scoped>
-/* Estilos mantidos */
-.setup-page {
-  text-align: center;
-  margin-top: 2rem;
-  padding: 0 1.5rem;
-  max-width: 700px;
-  width: 100%;
-}
-.title {
-  font-size: 2.5rem;
-  font-weight: 800;
-  margin-bottom: 2.5rem;
-  letter-spacing: -0.04em;
-  background: linear-gradient(90deg, #ffffff, #a1a1aa);
-  -webkit-background-clip: text;
-  -webkit-text-fill-color: transparent;
-}
-.setup-container {
-  background-color: #0a0a0a;
-  border: 1px solid #1f1f23;
-  padding: 2.5rem;
-  border-radius: 16px;
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
-  margin-bottom: 3rem;
-  text-align: left;
-}
 .setup-section {
   margin-bottom: 2rem;
-  border-bottom: 1px solid #1f1f23;
+  border-bottom: 1px solid var(--border);
   padding-bottom: 1.5rem;
 }
+
 .setup-section:last-child {
   margin-bottom: 0;
   border-bottom: none;
   padding-bottom: 0;
 }
-.setup-section h2 {
-  color: #7c3aed;
-  font-size: 1.25rem;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.75rem;
+
+.details {
+  display: grid;
+  grid-template-columns: max-content 1fr;
+  gap: 0.4rem 1rem;
+  margin: 0;
 }
-.setup-details p {
-  margin: 0.4rem 0;
-  color: #d4d4d8;
+
+.details dt {
+  color: var(--text);
+  font-weight: 600;
 }
-.nested-list {
-  margin-top: 0.5rem;
+
+.details dd {
+  margin: 0;
+  color: var(--text-secondary);
 }
-.nested-list strong {
-  display: block;
-  margin-bottom: 0.3rem;
-  color: #ffffff;
+
+.plain {
+  margin: 0;
+  color: var(--text-secondary);
 }
-.setup-section ul {
+
+.arrow-list {
   list-style: none;
   padding: 0;
-  margin: 0.5rem 0;
+  margin: 0;
 }
-.setup-section li {
-  color: #d4d4d8;
+
+.arrow-list li {
+  color: var(--text-secondary);
   margin-bottom: 0.4rem;
   padding-left: 1.5rem;
   position: relative;
   font-size: 0.95rem;
 }
-.setup-section li::before {
+
+.arrow-list li::before {
   content: "→";
-  color: #7c3aed;
+  color: var(--accent-text);
   position: absolute;
   left: 0;
 }
-.loading {
-  color: #a1a1aa;
-  margin: 2rem 0;
-}
-.back-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  color: #7c3aed;
-  text-decoration: none;
-  font-weight: 600;
-  transition: all 0.2s ease;
-}
-.back-link:hover {
-  transform: translateX(-5px);
-  color: #a78bfa;
-}
+
 @media (max-width: 480px) {
-  .setup-container {
-    padding: 1.5rem;
+  .details {
+    grid-template-columns: 1fr;
+    gap: 0.1rem;
+  }
+
+  .details dd {
+    margin-bottom: 0.6rem;
   }
 }
 </style>

@@ -18,7 +18,7 @@
 
 ## 📸 Preview
 <div align="center">
-  <img src="./assets/danielcosta.dev.br.gif" alt="Preview do site danielcosta.dev.br" width="100%"/>
+  <img src="./assets/danielcosta.dev.br.webp" alt="Preview do site danielcosta.dev.br" width="100%"/>
 </div>
 
 > *Acesse [danielcosta.dev.br](https://danielcosta.dev.br) para ver o site ao vivo.*
@@ -35,8 +35,8 @@ Este é meu site pessoal e portfólio, onde apresento meus projetos, habilidades
 
 | Camada | Tecnologia |
 |---|---|
-| Frontend | Vue 3 + Vite + CSS |
-| Servidor Web | Nginx (servindo arquivos estáticos do build) |
+| Frontend | Vue 3 + Vite + CSS, páginas pré-renderizadas com vite-ssg |
+| Servidor Web | Nginx sem root (arquivos estáticos + cabeçalhos de segurança e cache) |
 | Containerização | Docker + Docker Compose |
 | Gerenciamento | Portainer GitOps |
 | Tunelamento | Cloudflare Tunnel |
@@ -70,35 +70,10 @@ O site é hospedado em um servidor doméstico (**homelab**) rodando **Proxmox** 
 
 **Como funciona cada container:**
 
-- **`danielcosta-site`** — Build multi-stage: Stage 1 usa Node 20 Alpine para instalar dependências e gerar o build do Vue. Stage 2 usa Nginx Alpine para servir os arquivos estáticos do `dist/`.
+- **`danielcosta-site`** — Build multi-stage: Stage 1 usa Node 24 Alpine para instalar dependências (`npm ci`) e pré-renderizar cada página em HTML. Stage 2 usa `nginx-unprivileged` (Nginx sem root) para servir o `dist/` com CSP, HSTS e cache adequado. O container roda com sistema de arquivos somente leitura e sem capabilities.
 - **`cloudflared`** — Container oficial da Cloudflare que cria um túnel seguro entre o servidor doméstico e a internet, sem necessidade de IP público ou abertura de portas.
 
-```yaml
-services:
-  site:
-    build:
-      context: .
-      dockerfile: Dockerfile
-    image: danielcosta-vue
-    container_name: danielcosta-site
-    restart: always
-    networks:
-      - app
-
-  cloudflared:
-    image: cloudflare/cloudflared:latest
-    container_name: cloudflared
-    command: tunnel --no-autoupdate run
-    environment:
-      - TUNNEL_TOKEN=${KEY}
-    restart: always
-    networks:
-      - app
-
-networks:
-  app:
-    driver: bridge
-```
+Veja o [`docker-compose.yml`](./docker-compose.yml) — versões de imagem fixas, `read_only`, `cap_drop: ALL` e `no-new-privileges` nos dois containers.
 
 ---
 
@@ -110,14 +85,21 @@ git clone https://github.com/DanielCosta12/danielcosta.dev.br.git
 cd danielcosta.dev.br
 
 # 2. Instale as dependências
-npm install
+npm ci
 
 # 3. Inicie o servidor de desenvolvimento
 npm run dev
 
-# 4. Para gerar o build de produção
+# 4. Para gerar o build de produção (HTML pré-renderizado em dist/)
 npm run build
+npm run preview
 ```
+
+---
+
+## ✏️ Editando o conteúdo
+
+Todo o conteúdo (bio, skills, projetos, setup, homelab) fica em [`src/data/site.json`](./src/data/site.json), em português e inglês. Os títulos e descrições de cada página (SEO) ficam em [`src/translator.js`](./src/translator.js).
 
 ---
 

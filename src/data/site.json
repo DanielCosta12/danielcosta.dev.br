@@ -1,0 +1,175 @@
+{
+  "name": "Daniel Costa",
+  "image": "/avatar.webp",
+  "socialLinks": [
+    { "id": "linkedin", "url": "https://www.linkedin.com/in/daniel-costa12/", "label": "LinkedIn" },
+    { "id": "github", "url": "https://github.com/DanielCosta12", "label": "GitHub" },
+    { "id": "email", "url": "mailto:contato@danielcosta.dev.br", "label": "E-mail" }
+  ],
+  "setup": {
+    "hardware": {
+      "processor": "Ryzen 5 1600 AF",
+      "gpu": "RX 570 4GB Dataland",
+      "ram": "16 GB",
+      "storage": [
+        "SSD SATA 500 GB — Windows 11",
+        "SSD NVMe 500 GB — Arch Linux"
+      ]
+    },
+    "monitors": [
+      "Samsung T350 — 24”, Full HD, 75 Hz, FreeSync",
+      "LG 24MP400-B — 23.8”, Full HD, 75 Hz, 5 ms"
+    ],
+    "peripherals": {
+      "keyboards": ["Mitra Switch Brown", "Redragon Fizz RGB"],
+      "mouse": "Redragon Cobra",
+      "mic": "Fifine K669"
+    },
+    "case": "Redragon Wheel Jack",
+    "software": {
+      "os": ["Windows 11", "Arch Linux"],
+      "ide": "VSCodium"
+    }
+  },
+  "homelab": {
+    "specs": {
+      "cpu": "Intel Xeon E5",
+      "ram": "16 GB",
+      "os": "Proxmox VE"
+    }
+  },
+  "pt": {
+    "headline": "Desenvolvedor & Analista de Sistemas",
+    "tagline": "Transformo dados em decisões e processos manuais em automações.",
+    "skills": [
+      "SQL", "Power BI", "Business Intelligence", "Python", "JavaScript", "Vue.js", "Node.js",
+      "Linux", "Docker", "Proxmox", "pfSense", "n8n", "Redes & DNS", "IA"
+    ],
+    "biography": [
+      "Sou apaixonado por tecnologia, formado em Análise e Desenvolvimento de Sistemas, com experiência prática em SQL, Business Intelligence, Power BI e análise de indicadores.",
+      "Atuo transformando dados em insights para otimizar processos, apoiando decisões estratégicas com base em KPIs e métricas de desempenho. Também desenvolvo automações com Python, JavaScript, Node.js e n8n, integrando APIs para eliminar trabalho manual.",
+      "Fora do trabalho mantenho um homelab com Linux, Proxmox, Docker e pfSense, onde hospedo este site. Tenho forte interesse em Inteligência Artificial, Bitcoin, infraestrutura e no impacto da tecnologia nos negócios e na sociedade."
+    ],
+    "caseColor": "Branco",
+    "homelabServices": [
+      "Este site (Docker + Nginx via Cloudflare Tunnel)",
+      "Nó Bitcoin",
+      "Automação de workflows (n8n)",
+      "Gerenciamento de fotos (Immich)",
+      "DNS com bloqueio de anúncios (AdGuard Home)"
+    ],
+    "projects": [
+      {
+        "title": "BTC-USD Fees — Bot de Monitoramento Bitcoin",
+        "description": "Bot para Telegram desenvolvido em Python que envia automaticamente, a cada hora, o preço do Bitcoin e as taxas de transação da Mempool.",
+        "link": "https://github.com/DanielCosta12/btc_usd_fees",
+        "linkText": "Ver no GitHub",
+        "skills": ["Python", "Bitcoin", "Telegram API", "Automação"]
+      },
+      {
+        "title": "Mapp GetLinks — Automação de Coleta de Rotas",
+        "description": "Script Node.js que faz login automatizado em um sistema de rastreamento, extrai os links de acompanhamento de rotas e os envia via Telegram todos os dias úteis às 8h30, eliminando uma tarefa manual diária.",
+        "link": "https://github.com/danielcosta12/mapp-getlinks",
+        "linkText": "Ver no GitHub",
+        "skills": ["Node.js", "Automação", "Web Scraping", "Telegram API"]
+      },
+      {
+        "title": "AdGuard Home — Filtro de DNS na Rede Local",
+        "description": "Servidor DNS próprio rodando no homelab com AdGuard Home, bloqueando anúncios, rastreadores e conteúdo indesejado para todos os dispositivos da rede — dezenas de milhares de consultas por dia.",
+        "link": null,
+        "linkText": "Self-hosted",
+        "skills": ["DNS", "Redes", "Self-hosted", "Segurança"]
+      },
+      {
+        "title": "danielcosta.dev.br — Portfólio Pessoal",
+        "description": "Este site: Vue 3 + Vite com páginas pré-renderizadas, containerizado com Docker, servido por Nginx no meu homelab e publicado via Cloudflare Tunnel, sem portas abertas no roteador.",
+        "link": "https://github.com/DanielCosta12/danielcosta.dev.br",
+        "linkText": "Ver código no GitHub",
+        "skills": ["Vue.js", "Vite", "Docker", "Nginx", "Cloudflare"]
+      }
+    ],
+    "content": [
+      {
+        "title": "Cortes do Direto de Vegas — YouTube",
+        "description": "Canal dedicado a cortes e highlights de lives, com foco em edição ágil e consistência de publicação.",
+        "link": "https://www.youtube.com/@CortesdoDiretodeVegas",
+        "linkText": "Ver no YouTube",
+        "skills": ["Edição de Vídeo", "Storytelling", "Marketing"]
+      },
+      {
+        "title": "Do Silêncio ao Viral — TikTok",
+        "description": "Canal focado em criação e estratégia de conteúdo, explorando o crescimento orgânico em redes sociais.",
+        "link": "https://www.tiktok.com/@dosilencioaoviral_ofc",
+        "linkText": "Ver no TikTok",
+        "skills": ["Edição de Vídeo", "Vídeos Curtos", "Social Media"]
+      }
+    ]
+  },
+  "en": {
+    "headline": "Developer & Systems Analyst",
+    "tagline": "I turn data into decisions and manual processes into automations.",
+    "skills": [
+      "SQL", "Power BI", "Business Intelligence", "Python", "JavaScript", "Vue.js", "Node.js",
+      "Linux", "Docker", "Proxmox", "pfSense", "n8n", "Networking & DNS", "AI"
+    ],
+    "biography": [
+      "I am passionate about technology, with a degree in Systems Analysis and Development and hands-on experience in SQL, Business Intelligence, Power BI and KPI analysis.",
+      "I turn data into insights to optimize processes, supporting strategic decisions based on KPIs and performance metrics. I also build automations with Python, JavaScript, Node.js and n8n, integrating APIs to eliminate manual work.",
+      "Outside of work I run a homelab with Linux, Proxmox, Docker and pfSense, where this website is hosted. I have a strong interest in Artificial Intelligence, Bitcoin, infrastructure and the impact of technology on business and society."
+    ],
+    "caseColor": "White",
+    "homelabServices": [
+      "This website (Docker + Nginx via Cloudflare Tunnel)",
+      "Bitcoin node",
+      "Workflow automation (n8n)",
+      "Photo management (Immich)",
+      "Ad-blocking DNS (AdGuard Home)"
+    ],
+    "projects": [
+      {
+        "title": "BTC-USD Fees — Bitcoin Monitoring Bot",
+        "description": "Telegram bot written in Python that automatically sends, every hour, the Bitcoin price and the Mempool transaction fees.",
+        "link": "https://github.com/DanielCosta12/btc_usd_fees",
+        "linkText": "View on GitHub",
+        "skills": ["Python", "Bitcoin", "Telegram API", "Automation"]
+      },
+      {
+        "title": "Mapp GetLinks — Route Collection Automation",
+        "description": "Node.js script that logs into a tracking system, extracts the route tracking links and sends them via Telegram every business day at 8:30 am, eliminating a daily manual task.",
+        "link": "https://github.com/danielcosta12/mapp-getlinks",
+        "linkText": "View on GitHub",
+        "skills": ["Node.js", "Automation", "Web Scraping", "Telegram API"]
+      },
+      {
+        "title": "AdGuard Home — Local Network DNS Filtering",
+        "description": "Self-hosted DNS server running on my homelab with AdGuard Home, blocking ads, trackers and unwanted content for every device on the network — tens of thousands of queries per day.",
+        "link": null,
+        "linkText": "Self-hosted",
+        "skills": ["DNS", "Networking", "Self-hosted", "Security"]
+      },
+      {
+        "title": "danielcosta.dev.br — Personal Portfolio",
+        "description": "This website: Vue 3 + Vite with prerendered pages, containerized with Docker, served by Nginx on my homelab and published through Cloudflare Tunnel, with no open router ports.",
+        "link": "https://github.com/DanielCosta12/danielcosta.dev.br",
+        "linkText": "View source on GitHub",
+        "skills": ["Vue.js", "Vite", "Docker", "Nginx", "Cloudflare"]
+      }
+    ],
+    "content": [
+      {
+        "title": "Cortes do Direto de Vegas — YouTube",
+        "description": "Channel dedicated to clips and highlights of live streams, focused on fast editing and consistent publishing.",
+        "link": "https://www.youtube.com/@CortesdoDiretodeVegas",
+        "linkText": "View on YouTube",
+        "skills": ["Video Editing", "Storytelling", "Marketing"]
+      },
+      {
+        "title": "Do Silêncio ao Viral — TikTok",
+        "description": "Channel focused on content creation and strategy, exploring organic growth on social networks.",
+        "link": "https://www.tiktok.com/@dosilencioaoviral_ofc",
+        "linkText": "View on TikTok",
+        "skills": ["Video Editing", "Short-form Video", "Social Media"]
+      }
+    ]
+  }
+}

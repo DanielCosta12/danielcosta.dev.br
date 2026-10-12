@@ -1,47 +1,15 @@
-import { createRouter, createWebHistory } from 'vue-router'
 import Home from '../views/Home.vue'
 
-const routes = [
-  {
-    path: '/',
-    name: 'Home',
-    component: Home,
-    meta: { title: 'Daniel Costa | Software Engineer' }
-  },
-  {
-    path: '/sobre',
-    name: 'About',
-    component: () => import('../views/About.vue'),
-    meta: { title: 'Sobre Mim | Daniel Costa' }
-  },
-  {
-    path: '/projetos',
-    name: 'Projects',
-    component: () => import('../views/Projects.vue'),
-    meta: { title: 'Projetos | Daniel Costa' }
-  },
-  {
-    path: '/setup',
-    name: 'Setup',
-    component: () => import('../views/Setup.vue'),
-    meta: { title: 'Meu Setup | Daniel Costa' }
-  },
-  {
-    path: '/homelab',
-    name: 'Homelab',
-    component: () => import('../views/Homelab.vue'),
-    meta: { title: 'Meu Homelab | Daniel Costa' }
-  }
+// Títulos e descrições de cada página ficam em translator.js (meta.<name>)
+export const routes = [
+  { path: '/', name: 'Home', component: Home },
+  { path: '/sobre', name: 'About', component: () => import('../views/About.vue') },
+  { path: '/projetos', name: 'Projects', component: () => import('../views/Projects.vue') },
+  { path: '/setup', name: 'Setup', component: () => import('../views/Setup.vue') },
+  { path: '/homelab', name: 'Homelab', component: () => import('../views/Homelab.vue') },
+  // '/404' é pré-renderizado e servido pelo nginx para qualquer endereço inexistente
+  { path: '/404', name: 'NotFound', component: () => import('../views/NotFound.vue') },
+  { path: '/:pathMatch(.*)*', name: 'CatchAll', component: () => import('../views/NotFound.vue') }
 ]
 
-const router = createRouter({
-  history: createWebHistory(),
-  routes
-})
-
-router.beforeEach((to, from, next) => {
-  document.title = to.meta.title || 'Daniel Costa'
-  next()
-})
-
-export default router
+export const scrollBehavior = (to, from, savedPosition) => savedPosition || { top: 0 }
